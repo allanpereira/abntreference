@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get(/(GetTitle)\/(.*)$/, (req, res) => {
 	let url = req.params[1];
 
-	axios.get('http://' + url).then((resp) => {
+	axios.get(url).then((resp) => {
 		let title = (resp.data).match(/<title>(.*)<\/title>/);
 		title = encodeURI(title[1]);
 

@@ -1,6 +1,6 @@
 (function ($) {
 
-	let uri = $('#url');
+	let url = $('#url');
 	let name = $('#title');
 	let author = $('#author');
 	let generate = $('#generate');
@@ -12,11 +12,10 @@
 	generator.on('submit', (e) => {
 		e.preventDefault();
 
-		let url = uri.val().split('//').splice(-1);
 		var monthsOfYear = ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dez.'];
 
 		if (automatic.is(':checked') || name.val() == '') {
-			$.get('GetTitle/' + url, function(res) {
+			$.get('GetTitle/' + url.val(), function(res) {
 				if (res.success) {
 					name.val(decodeURI(res.title));
 				}
@@ -28,7 +27,7 @@
 		}
 
 		function generateReference() {
-			if (name.val() && uri.val()) {
+			if (name.val() && url.val()) {
 				if (author.val()) {
 					let authors = author.val().split(',');
 
@@ -50,7 +49,7 @@
 				let dateStr = [dayFull, monthsOfYear[date.getMonth()], date.getFullYear(), ''].join(' ');
 
 				reference += `<strong>${name.val()}</strong>. `;
-				reference += `Disponível em: &lt;${uri.val()}&gt;. `;
+				reference += `Disponível em: &lt;${url.val()}&gt;. `;
 				reference += `Acesso em: ${dateStr}`;
 
 				var el = $('#reference');
