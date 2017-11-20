@@ -1,6 +1,7 @@
 (function ($) {
 
 	let url = $('#url');
+	let ref = $('#reference');
 	let name = $('#title');
 	let author = $('#author');
 	let generate = $('#generate');
@@ -15,9 +16,14 @@
 		var monthsOfYear = ['jan.', 'fev.', 'mar.', 'abr.', 'mai.', 'jun.', 'jul.', 'ago.', 'set.', 'out.', 'nov.', 'dez.'];
 
 		if (automatic.is(':checked') || name.val() == '') {
+
 			$.get('GetTitle/' + url.val(), function(res) {
 				if (res.success) {
+					ref.removeClass('error');
 					name.val(decodeURI(res.title));
+				} else {
+					console.log('error');
+					ref.show().addClass('error').html(res.message);
 				}
 
 				generateReference();
@@ -52,9 +58,8 @@
 				reference += `Disponível em: &lt;${url.val()}&gt;. `;
 				reference += `Acesso em: ${dateStr}`;
 
-				var el = $('#reference');
-				el.show();
-				el.html(reference);
+				ref.show();
+				ref.html(reference);
 
 				new Clipboard('.copy');
 				$('.copy').show();

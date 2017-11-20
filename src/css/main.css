@@ -52,6 +52,11 @@ html {
 	display: none;
 }
 
+#reference.error {
+	border-color: red;
+	color: red;
+}
+
 .copy {
 	display: none;
 }
