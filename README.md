@@ -9,3 +9,5 @@ Gerador de referências no padrão ABNT para uso pessoal
 - Instalar os packages `npm install`
 - Iniciar `npm start`
 - Acessar o endereço: http://localhost:3000
+
+Você também pode usar o projeto através do endereço https://abntreference.herokuapp.com/
